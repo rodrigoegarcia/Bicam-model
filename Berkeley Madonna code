@@ -1,0 +1,47 @@
+METHOD EULER		
+		
+STARTTIME = 0		
+STOPTIME=10		
+DT = 0.02		
+DTOUT = 0.1		
+		
+{Parameters}		
+		
+Init Na = 1e6		{Sensitive cells in reactor A}	
+Init Nb = 1		{Sensitive cells in reactor B}
+Init P = 1e5		{Phage density}	
+Init R = 1000		{Reservoir}
+Init Ra = 500 		{Resource amount reactor A}
+init Rb =10 		{Resource in reactor B}
+init Nr =0		{Resistant evolving in chamber 2}
+Init Pc =0 		{Camara coleccion}
+mnr = 1e-7		{Rate of mutation Nb --> N}
+
+	
+e = 5E-7		{Conversion efficiency}
+wa = 0.2		{Flow rate a}
+wb = 0.5		{Flow rate c}
+wc = 0.5 		{Flow rate d}
+v = 0.7 			{Growth rate}
+vr = 0.7			{Growth rate resistant}
+K = 1			{Monod constant}
+psi = Ra/(Ra+K) 	{Monod in A}
+psiB = Rb/(Rb+k) 	{Monod in B}	
+d = 1e-7		{Phage adsorption rate}
+bs = 50			{Phage burst size}
+		
+d/dt(R) = -wa*R
+
+d/dt(Ra) =wa*(R) - (psi*e*Na*v) - wb*Ra
+
+d/dt(Rb) =wb*Ra- (psib*e*(Nb*v)*(Nr*vr))-wc*Rb		
+		
+d/dt(Na) = v*psi*Na - wb*Na		
+		
+d/dt(Nb) = wb*Na + v*psiB*Nb - d*Nb*P*psib -mnr*Nb -wc*Nb	
+
+d/dt(Nr) = vr*psiB*Nr + mnr*Nb - wc*Nr			
+		
+d/dt(P) = psiB*(d*Nb*P*(bs-1)) - wc*P
+
+d/dt (Pc) = wc*P
