@@ -1,0 +1,229 @@
+<Document>
+<Version> 22 </Version>
+<JMadonnaVersion> 10.2.8 </JMadonnaVersion>
+<Bounds> 0 0 1440 801 </Bounds>
+<NotesEditor>
+<jeditorpane>
+<size>13</size><family>Lucida Grande</family>
+
+
+
+
+
+
+
+
+</jeditorpane>
+</NotesEditor>
+<jmadonna.EquationPanel>
+<DocPanel>
+</DocPanel>
+<jeditorpane>
+<size>18</size><family>Serif</family>METHOD EULER		
+		
+STARTTIME = 0		
+STOPTIME=10		
+DT = 0.02		
+DTOUT = 0.1		
+		
+{Parameters}		
+		
+Init Na = 1e6		{Sensitive cells in reactor A}	
+Init Nb = 1		{Sensitive cells in reactor B}
+Init P = 1e5		{Phage density}	
+Init R = 1000		{Reservoir}
+Init Ra = 500 		{Resource amount reactor A}
+init Rb =10 		{Resource in reactor B}
+init Nr =0		{Resistant evolving in chamber 2}
+Init Pc =0 		{Camara coleccion}
+mnr = 1e-7		{Rate of mutation Nb --<gt> N}
+
+	
+e = 5E-7		{Conversion efficiency}
+wa = 0.2		{Flow rate a}
+wb = 0.5		{Flow rate c}
+wc = 0.5 		{Flow rate d}
+v = 0.7 			{Growth rate}
+vr = 0.7			{Growth rate resistant}
+K = 1			{Monod constant}
+psi = Ra/(Ra+K) 	{Monod in A}
+psiB = Rb/(Rb+k) 	{Monod in B}	
+d = 1e-7		{Phage adsorption rate}
+bs = 50			{Phage burst size}
+		
+d/dt(R) = -wa*R
+
+d/dt(Ra) =wa*(R) - (psi*e*Na*v) - wb*Ra
+
+d/dt(Rb) =wb*Ra- (psib*e*(Nb*v)*(Nr*vr))-wc*Rb		
+		
+d/dt(Na) = v*psi*Na - wb*Na		
+		
+d/dt(Nb) = wb*Na + v*psiB*Nb - d*Nb*P*psib -mnr*Nb -wc*Nb	
+
+d/dt(Nr) = vr*psiB*Nr + mnr*Nb - wc*Nr			
+		
+d/dt(P) = psiB*(d*Nb*P*(bs-1)) - wc*P
+
+d/dt (Pc) = wc*P
+	<size>12</size>
+
+
+
+
+
+
+
+
+
+</jeditorpane>
+</jmadonna.EquationPanel>
+
+<imethod> rk4 </imethod>
+<Param> STOPTIME 120.0 </Param>
+<Param> DT 1.0E-4 </Param>
+<Param> Nb 0.0 </Param>
+<Param> Ra 0.0 </Param>
+<Param> Rb 0.0 </Param>
+<Param> mnr 1.0E-8 </Param>
+<Param> e 1.0E-7 </Param>
+<Param> wa 0.1 </Param>
+<Param> wb 0.1 </Param>
+<Param> wc 0.1 </Param>
+<Param> v 1.5 </Param>
+<Param> vr 1.35 </Param>
+<Param> d 4.0E-8 </Param>
+<jmadonna.ParameterPanel>
+<DocPanel>
+</DocPanel>
+<ParamSets>
+</ParamSets>
+</jmadonna.ParameterPanel>
+<jmadonna.MultiPanel>
+<DocPanel>
+</DocPanel>
+<DividerPercent> 1.0 </DividerPercent>
+<Orientation> -1 </Orientation>
+<idx> 0 </idx>
+<TabSplitter>
+<SelectedIndex> 0 </SelectedIndex>
+<graph.COutputFrame>
+<DocPanel>
+<Name>
+Graph 1
+</Name>
+</DocPanel>
+
+<SingleView>
+<graph.COutputView>
+<Name> Graph </Name>
+<GraphToolBar>
+<Grid> 1 </Grid>
+</GraphToolBar>
+<Plot>
+<LineWidth> 3 </LineWidth>
+</Plot>
+<OV_XVAR>
+<VI_SYMBOL> TIME </VI_SYMBOL>
+</OV_XVAR>
+<OV_YVARS>
+<OV_YVAR_I>
+<VI_SYMBOL> P </VI_SYMBOL>
+<VI_SHOW> true </VI_SHOW>
+<VI_Y2AXIS> false </VI_Y2AXIS>
+</OV_YVAR_I>
+<OV_YVAR_I>
+<VI_SYMBOL> R </VI_SYMBOL>
+<VI_SHOW> false </VI_SHOW>
+<VI_Y2AXIS> false </VI_Y2AXIS>
+</OV_YVAR_I>
+<OV_YVAR_I>
+<VI_SYMBOL> Pc </VI_SYMBOL>
+<VI_SHOW> true </VI_SHOW>
+<VI_Y2AXIS> false </VI_Y2AXIS>
+</OV_YVAR_I>
+<OV_YVAR_I>
+<VI_SYMBOL> Nr </VI_SYMBOL>
+<VI_SHOW> false </VI_SHOW>
+<VI_Y2AXIS> false </VI_Y2AXIS>
+</OV_YVAR_I>
+<OV_YVAR_I>
+<VI_SYMBOL> Ra </VI_SYMBOL>
+<VI_SHOW> false </VI_SHOW>
+<VI_Y2AXIS> false </VI_Y2AXIS>
+</OV_YVAR_I>
+<OV_YVAR_I>
+<VI_SYMBOL> Rb </VI_SYMBOL>
+<VI_SHOW> false </VI_SHOW>
+<VI_Y2AXIS> false </VI_Y2AXIS>
+</OV_YVAR_I>
+<OV_YVAR_I>
+<VI_SYMBOL> Na </VI_SYMBOL>
+<VI_SHOW> false </VI_SHOW>
+<VI_Y2AXIS> false </VI_Y2AXIS>
+</OV_YVAR_I>
+<OV_YVAR_I>
+<VI_SYMBOL> Nb </VI_SYMBOL>
+<VI_SHOW> false </VI_SHOW>
+<VI_Y2AXIS> false </VI_Y2AXIS>
+</OV_YVAR_I>
+</OV_YVARS>
+<OV_TABLE> false </OV_TABLE>
+<OV_FFT> false </OV_FFT>
+<OV_COLORS> true </OV_COLORS>
+<OV_STYLES> false </OV_STYLES>
+<OV_OSCMODE> false </OV_OSCMODE>
+<OV_LINES> true </OV_LINES>
+<OV_POINTS> false </OV_POINTS>
+<OV_GRID> true </OV_GRID>
+<OV_DBTN> true </OV_DBTN>
+<OV_LEGEND> false </OV_LEGEND>
+<OV_PARAMS> false </OV_PARAMS>
+<OV_READOUT> false </OV_READOUT>
+<OV_INITCOND> false </OV_INITCOND>
+<OV_RDOUTFXFY> 0.0 0.0 </OV_RDOUTFXFY>
+<OV_ZSNORMAL>
+<ZS_SIZE> 1 </ZS_SIZE>
+<ZS_I>
+<ZS_XLOG> false </ZS_XLOG>
+<ZS_Y1MINMAXDIV> 1.0 1.0E13 13  </ZS_Y1MINMAXDIV>
+<ZS_Y1LOG> true </ZS_Y1LOG>
+<ZS_Y2LOG> false </ZS_Y2LOG>
+</ZS_I>
+</OV_ZSNORMAL>
+<OV_ZSFFT>
+<ZS_SIZE> 1 </ZS_SIZE>
+<ZS_I>
+<ZS_XLOG> true </ZS_XLOG>
+<ZS_Y1LOG> false </ZS_Y1LOG>
+<ZS_Y2LOG> false </ZS_Y2LOG>
+</ZS_I>
+</OV_ZSFFT>
+<OV_ZSOSCMODE>
+</OV_ZSOSCMODE>
+<OV_AUTOLABEL> 0 1 </OV_AUTOLABEL>
+<OV_AUTOLABEL> 1 1 </OV_AUTOLABEL>
+<OV_AUTOLABEL> 2 1 </OV_AUTOLABEL>
+<OV_X1LABELS>  TIME </OV_X1LABELS>
+<OV_Y1LABELS>  P, Pc </OV_Y1LABELS>
+<OV_Y2LABELS>   </OV_Y2LABELS>
+<OV_LEGENDXY> 0.30000001192092896 0.5 </OV_LEGENDXY>
+<OV_PARAMSXY> 0.30000001192092896 0.5 </OV_PARAMSXY>
+<OV_COLORTABLE> 0 <OV_COLORTABLE>
+</graph.COutputView>
+</SingleView>
+</graph.COutputFrame>
+</TabSplitter>
+<idx> 1 </idx>
+<TabSplitter>
+<SelectedIndex> -1 </SelectedIndex>
+</TabSplitter>
+</jmadonna.MultiPanel>
+
+<ChemicalReactionDialog>
+<ShowRates> true </ShowRates>
+<ShowConsts> true </ShowConsts>
+<ShowInits> true </ShowInits>
+<ShowDiffs> true </ShowDiffs>
+</ChemicalReactionDialog>
+</Document>
